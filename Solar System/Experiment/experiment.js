@@ -38,108 +38,79 @@ function initialiseInfo()
 
 var sunRadius;
 
-var mercury;
-var mercuryRadius;
-var mercuryOrbitX;
-var mercuryOrbitY;
-var mercurySpeed;
+var saturnRing;
 
-var venus;
-var venusRadius;
-var venusOrbitX;
-var venusOrbitY;
-var venusSpeed;
+var uranusRing;
 
-var earth;
-var earthRadius;
-var earthOrbitX;
-var earthOrbitY;
-var earthSpeed;
+var asteroidBeltRadius;
 
-var mars;
-var marsRadius;
-var marsOrbitX;
-var marsOrbitY;
-var marsSpeed;
-
-var jupiter;
-var jupiterRadius;
-var jupiterOrbitX;
-var jupiterOrbitY;
-var jupiterSpeed;
-
-var saturn;
-var saturnRadius;
-var saturnOrbitX;
-var saturnOrbitY;
-var saturnSpeed;
-
-var uranus;
-var uranusRadius;
-var uranusOrbitX;
-var uranusOrbitY;
-var uranusSpeed;
-
-var neptune;
-var neptuneRadius;
-var neptuneOrbitX;
-var neptuneOrbitY;
-var neptuneSpeed;
+var planets=[];
+var planetRadius;
+var planetsOrbitX;
+var planetsOrbitY;
+var planetsSpeed;
+var textures;
 
 function initialise(){
 	
-	sunRadius  = 1;
-	mercuryRadius = 2.6-2;
-	venusRadius = 3.7-2;
-	earthRadius = 6.9-0.5;
-	marsRadius =6.6-0.5;
-	jupiterRadius = 55.2-15;
-	saturnRadius=48.7-10;
-	uranusRadius = 20.6-5;
-	neptuneRadius = 19.8-5;
-
-	mercuryOrbitX = 31.724-30;
-	mercuryOrbitY = 28.285-30;
-
-	venusOrbitX = 56.185-50;
-	venusOrbitY = 56.016-50;
-
-	earthOrbitX=81.882-60;
-	earthOrbitY=81.2243-60;
-
-	marsOrbitX=124.731-70;
-	marsOrbitY=118.7633-70;
-
-	jupiterOrbitX=425.995-300;
-	jupiterOrbitY=415.538-300;
-
-	saturnOrbitX=782.215-510;
-	saturnOrbitY=760.0115-510;
-
-	uranusOrbitX=1571.354-1200;
-	uranusOrbitY=1534.8-1200;
-
-	neptuneOrbitX=2463.484-2000;
-	neptuneOrbitY=2452.373-2000;
-
-	var height = 400000;
-	var width = 1000000;
-	PIEsetAreaOfInterest(-(width/2),height/2,width/2,-(height/2));
-	PIEsetCameraDepth(300000000);
-	PIEsetCameraFOV(90);
-	//PIEcamera.near = 0.1;
-	//PIEsetCameraAspect(width/height);
+	sunRadius  = 5
+	var mercuryRadius = 7.48683936 
+	var venusRadius = 10.65434832 
+	var earthRadius = 12.901896 
+	var marsRadius = 13.340944
+	var jupiterRadius = 29.256 
+	var saturnRadius= 25.811 
+	var uranusRadius = 19.6524 
+	var neptuneRadius = 18.8892 
+	var mercuryOrbitX = 15.89566038 
+	var mercuryOrbitY = 4.949753223
+	var venusOrbitX =44.62509754
+	var venusOrbitY = 13.46681671
+	
+	var earthOrbitX=80.5703978 
+	var earthOrbitY=24.26010231 
+	var marsOrbitX=146.198472 
+	var marsOrbitY=40.20263178
+	var jupiterOrbitX= 204.338691
+	var jupiterOrbitY=57.83318778
+	var saturnOrbitX=285.662421
+	var saturnOrbitY=80.97594694
+	var uranusOrbitX= 389.698886 
+	var uranusOrbitY=108.438 
+	var neptuneOrbitX=486.3801096 
+	var neptuneOrbitY=146.5185883 
+	
+	var height = 200
+	var width = 600
+	PIEsetAreaOfInterest(-(width),height,width,-(height));
 	PIEadjustCamera(0,0,1000);
-	//PIEadjustDisplayScene();
+	PIEcameraZ = 1000;
 
-	mercurySpeed = 0.473;
-	venusSpeed = 0.3502;
-	earthSpeed = 0.3800;
-	marsSpeed = 0.2407;
-	jupiterSpeed = 0.1307;
-	saturnSpeed = 0.0969;
-	uranusSpeed = 0.068;
-	neptuneSpeed = 0.0543;
+	var mercurySpeed = 0.002
+	var venusSpeed = 0.0008
+	var earthSpeed = 0.0004
+	var marsSpeed = 0.00025
+	var jupiterSpeed = 0.0001
+	var saturnSpeed = 0.00005
+	var uranusSpeed = 0.00003
+	var neptuneSpeed = 0.00002
+
+	var texMerc =  new THREE.TextureLoader().load('images/mercurymap.jpg');
+	var texVenus= new THREE.TextureLoader().load('images/venusmap.jpg');
+	var texEarth = new THREE.TextureLoader().load('images/earth.jpg') ;
+	var texMars = new THREE.TextureLoader().load('images/marsmap1k.jpg')
+	var texJupiter= new THREE.TextureLoader().load('images/jupitermap.jpg')
+	var texSaturn= new THREE.TextureLoader().load('images/saturnmap.jpg')
+	var texUranus= new THREE.TextureLoader().load('images/uranusmap.jpg')
+	var texNeptune= new THREE.TextureLoader().load('images/neptunemap.jpg')
+
+	planetRadius=[mercuryRadius,venusRadius,earthRadius,marsRadius,jupiterRadius,saturnRadius,uranusRadius,neptuneRadius];
+	planetsOrbitX=[mercuryOrbitX,venusOrbitX,earthOrbitX,marsOrbitX,jupiterOrbitX,saturnOrbitX,uranusOrbitX,neptuneOrbitX];
+	planetsOrbitY=[mercuryOrbitY,venusOrbitY,earthOrbitY,marsOrbitY,jupiterOrbitY,saturnOrbitY,uranusOrbitY,neptuneOrbitY];
+	planetsSpeed=[mercurySpeed,venusSpeed,earthSpeed,marsSpeed,jupiterSpeed,saturnSpeed,uranusSpeed,neptuneSpeed];
+	textures = [texMerc,texVenus,texEarth,texMars,texJupiter,texSaturn,texUranus,texNeptune];
+
+	asteroidBeltRadius=156;
 }
 
 function MakeOrbit(xRadius,yRadius){
@@ -154,21 +125,8 @@ var geometry = path.createPointsGeometry(50000);
 var material = new THREE.LineBasicMaterial({color: 0xffffff});
 var ellipse = new THREE.Line(geometry, material);
 PIEaddElement(ellipse);
-//ellipse.rotation.set(-Math.PI/4-Math.PI/8,0,0);
 console.log("ellipse");
 }
-
-function makeEarth(){
-	MakeOrbit(earthOrbitX,earthOrbitY);
-	var sphere = new THREE.SphereBufferGeometry(earthRadius,15,15);
-	var material = new THREE.MeshBasicMaterial( {map:  new THREE.TextureLoader().load('images/earth.jpg') } );
-	earth = new THREE.Mesh(sphere,material);
-	earth.rotation.set(Math.PI/2, 0.4101, 0);
-	earth.position.set(earthOrbitX,0,0);
-	PIEaddElement(earth);	
-}
-
-
 
 function makeSun(){
 	var sphere = new THREE.SphereBufferGeometry(sunRadius,15,15);
@@ -176,132 +134,48 @@ function makeSun(){
 	sun = new THREE.Mesh(sphere,material);
 	sun.position.set(0,0,0);
 	PIEaddElement(sun);
-	PIErender();
 }
 
-function makeMercury(){
-	MakeOrbit(mercuryOrbitX,mercuryOrbitY);
-	var geometry	= new THREE.SphereGeometry(mercuryRadius, 15, 15)
-	var material	= new THREE.MeshPhongMaterial({
-		map	: new THREE.TextureLoader().load('images/mercurymap.jpg'),
-		bumpMap	: new THREE.TextureLoader().load('images/mercurybump.jpg'),
-		bumpScale: 0.005,
-	})
-	mercury	= new THREE.Mesh(geometry, material);
-	mercury.position.set(mercuryOrbitX,0,0);
-	mercury.rotation.set(Math.PI/2, 0.4101, 0);
-	PIEaddElement(mercury);	
+function func(){
+
 }
 
-function makeVenus(){
-	MakeOrbit(venusOrbitX,venusOrbitY);
-	var geometry	= new THREE.SphereGeometry(venusRadius, 15, 15)
-	var material	= new THREE.MeshPhongMaterial({
-		map	: new THREE.TextureLoader().load('images/venusmap.jpg'),
-		bumpMap	: new THREE.TextureLoader().load('images/venusbump.jpg'),
-		bumpScale: 0.005,
-	})
-	venus	= new THREE.Mesh(geometry, material);
-	venus.position.set(venusOrbitX,0,0);
-	venus.rotation.set(Math.PI/2, 0.4101, 0);	
-	PIEaddElement(venus);	
+function makePlanets(){
+	var i;
+	for(i=0;i<8;i++){
+		MakeOrbit(planetsOrbitX[i],planetsOrbitY[i]);
+		var sphere = new THREE.SphereBufferGeometry(planetRadius[i],15,15);
+		var material = new THREE.MeshBasicMaterial( {map:  textures[i] } );
+		planets[i] = new THREE.Mesh(sphere,material);
+		planets[i].rotation.set(0, 0.4101, 0);
+		planets[i].position.set(planetsOrbitX[i],0,0);
+		PIEaddElement(planets[i]);
+		PIEdragElement(planets[i]);
+    		PIEsetDrag(planets[i], func);
+	}
+	var texture2	= new THREE.TextureLoader().load('images/uranusringcolour.jpg')
+	uranusRing = makeRing(planetRadius[6]+2,planetRadius[6]+7,texture2);
+	uranusRing.position.set(planetsOrbitX[6],0,0);
+	uranusRing.rotation.set(Math.PI/2-0.2,0,0);
+	PIEaddElement(uranusRing);
+
+	texture2 = new THREE.TextureLoader().load('images/saturnringcolor.jpg')
+	saturnRing = makeRing(planetRadius[5]+2,planetRadius[5]+8,texture2);
+	saturnRing.position.set(planetsOrbitX[5],0,0);
+	saturnRing.rotation.set(Math.PI/2-0.2,0,0);
+	PIEaddElement(saturnRing);
 }
 
-
-function makeMars(){
-	MakeOrbit(marsOrbitX,marsOrbitY);
-	var geometry	= new THREE.SphereGeometry(marsRadius, 32, 32)
-	var material	= new THREE.MeshPhongMaterial({
-		map	: new THREE.TextureLoader().load('images/marsmap1k.jpg'),
-		bumpMap	: new THREE.TextureLoader().load('images/marsbump1k.jpg'),
-		bumpScale: 0.05,
-	})
-	mars	= new THREE.Mesh(geometry, material);
-	mars.position.set(marsOrbitX,0,0);
-	mars.rotation.set(Math.PI/2, 0.4101, 0);
-	PIEaddElement(mars);	
-}
-
-function makeJupiter(){
-	MakeOrbit(jupiterOrbitX,jupiterOrbitY);
-	var geometry	= new THREE.SphereGeometry(jupiterRadius, 32, 32)
-	var texture	= new THREE.TextureLoader().load('images/jupitermap.jpg')
-	var material	= new THREE.MeshPhongMaterial({
-		map	: texture,
-		bumpMap	: texture,
-		bumpScale: 0.02,
-	})
-	jupiter	= new THREE.Mesh(geometry, material);
-	jupiter.position.set(jupiterOrbitX,0,0);
-	jupiter.rotation.set(Math.PI/2, 0.4101, 0);
-	PIEaddElement(jupiter);	
-}
-
-
-function makeSaturn(){
-	MakeOrbit(saturnOrbitX,saturnOrbitY);
-	var geometry	= new THREE.SphereGeometry(saturnRadius, 32, 32)
-	var texture	= new THREE.TextureLoader().load('images/saturnmap.jpg')
+function makeRing(innerRadius,outerRadius,texture){
+	var geometry = new THREE.RingGeometry(innerRadius, outerRadius, 30000);
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,
 		bumpMap	: texture,
 		bumpScale: 0.05,
 	})
-	saturn	= new THREE.Mesh(geometry, material);
-	saturn.position.set(saturnOrbitX,0,0);
-	saturn.rotation.set(Math.PI/2, 0.4101, 0);
-	PIEaddElement(saturn);	
+	var ring = new THREE.Mesh(geometry, material);
+	return ring;
 }
-
-
-
-
-function makeUranus(){
-	MakeOrbit(uranusOrbitX,uranusOrbitY);
-	var geometry	= new THREE.SphereGeometry(uranusRadius, 32, 32)
-	var texture	= new THREE.TextureLoader().load('images/uranusmap.jpg')
-	var material	= new THREE.MeshPhongMaterial({
-		map	: texture,
-		bumpMap	: texture,
-		bumpScale: 0.05,
-	})
-	uranus	= new THREE.Mesh(geometry, material);
-	uranus.position.set(uranusOrbitX,0,0);
-	uranus.rotation.set(-(Math.PI/2), 0.4101, 0);
-	PIEaddElement(uranus);	
-}
-
-
-
-
-function makeNeptune(){
-	MakeOrbit(neptuneOrbitX,neptuneOrbitY);
-	var geometry	= new THREE.SphereGeometry(neptuneRadius, 32, 32)
-	var texture	= new THREE.TextureLoader().load('images/neptunemap.jpg')
-	var material	= new THREE.MeshPhongMaterial({
-		map	: texture,
-		bumpMap	: texture,
-		bumpScale: 0.05,
-	})
-	neptune	= new THREE.Mesh(geometry, material);
-	neptune.position.set(neptuneOrbitX,0,0);
-	neptune.rotation.set(Math.PI/2, 0.4101, 0);
-	PIEaddElement(neptune);	
-}
-
-
-
-function createPluto(){
-	var geometry	= new THREE.SphereGeometry(0.5, 32, 32)
-	var material	= new THREE.MeshPhongMaterial({
-		map	: THREE.TextureLoader().load('images/plutomap1k.jpg'),
-		bumpMap	: THREE.TextureLoader().load('images/plutobump1k.jpg'),
-		bumpScale: 0.005,
-	})
-	var mesh	= new THREE.Mesh(geometry, material)
-	return mesh	
-}
-
 
 function zoomIn(){
 	PIEcamera.position.z -=50;
@@ -319,41 +193,64 @@ function zoomOut(){
 }
 
 var mouse=new THREE.Vector2();
-var raycaster;
-function onDocumentMouseDown( event ) {
-	
-	raycaster = new THREE.Raycaster();
-    	event.preventDefault();
-    	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+var raycaster=new THREE.Raycaster();
+var intersects; 
+function onMouseDown(event){
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-    	// find intersections
-    	raycaster.setFromCamera( mouse, PIEcamera );
-    	var intersects = raycaster.intersectObjects( PIEscene.children );
-    	if(intersects.length>0){
-		var obj = intersects[0].object;
+	raycaster.setFromCamera( mouse, PIEcamera );	
+    	intersects = raycaster.intersectObjects( PIEscene.children );
 		var name="None",distance="None",time="None";
-		if(obj === mercury){name ="Mercury"; distance="0.39 AU"; time="88 days";}
-		else if(obj === venus){name ="Venus"; distance="0.723 AU"; time="225 days";}
-		else if(obj === earth){name ="Earth"; distance="1 AU"; time="365 days";}
-		else if(obj === mars){name ="Mars"; distance="1.524 AU"; time="687 days";}
-		else if(obj === jupiter){name ="Jupiter"; distance="5.203 AU"; time="12 years";}
-		else if(obj === saturn){name ="Saturn"; distance="9.6 AU"; time="29 years";}
-		else if(obj === uranus){name ="Uranus"; distance="19.18 AU"; time="84 years";}
-		else if(obj === neptune){name ="Neptune"; distance="30.06 AU"; time="165 years";}
-		else
-			console.log("obj problem")
-
+    		if(intersects.length>0){
+			var obj1 = intersects[0].object;
+			var i,p=-1;
+			for(i=0;i<8 && p==-1;i++){
+				if(obj1==planets[i])
+					p=i;     }
+			switch(p){
+				case 0: {name ="Mercury"; distance="0.39 AU"; time="88 days";}
+					break;
+				case 1: {name ="Venus"; distance="0.723 AU"; time="225 days";}
+					break;	
+				case 2: {name ="Earth"; distance="1 AU"; time="365 days";}
+					break;	
+				case 3: {name ="Mars"; distance="1.524 AU"; time="687 days";}
+					break;
+				case 4: {name ="Jupiter"; distance="5.203 AU"; time="12 years";}
+					break;
+				case 5: {name ="Saturn"; distance="9.6 AU"; time="29 years";}
+					break;
+				case 6: {name ="Uranus"; distance="19.18 AU"; time="84 years";}
+					break;
+				case 7: {name ="Neptune"; distance="30.06 AU"; time="165 years";}	
+			}
+			
+			console.log("click and show");
+		}
 		displayPlanet(name,distance,time);
-	}
-	
+		inputPlanet(name,distance,time);	
+
 }
+
 function displayPlanet(name,distance,time){
 	PIEchangeDisplayText("Name",name);
 	PIEchangeDisplayText("Distance from Sun",distance)
 	PIEchangeDisplayText("Orbital time",time)
 }
 
+function inputPlanet(name,distance,time){
+	PIEchangeInputText("Name",name);
+	PIEchangeInputText("Distance from Sun",distance)
+	PIEchangeInputText("Orbital time",time)
+}
 
+function Windowresize(){
+	PIEresize();
+	PIEadjustCamera(0,0,1000);
+	PIEadjustDisplayScene();
+}
+
+var hack;
 function loadExperimentElements(){
 	//control = new THREE.OrbitControls(PIEcamera, PIErenderer.domElement);
 	//control.addEventListener('change',PIErender);
@@ -363,17 +260,10 @@ function loadExperimentElements(){
     	initialiseHelp();
     	initialiseInfo();
 
-	PIEscene.background = new THREE.TextureLoader().load('images/galaxy.jpg');
+	PIEscene.background = new THREE.TextureLoader().load('images/galaxy.png');
 	initialise();
-	makeEarth();
 	makeSun();
-	makeMercury();
-	makeVenus();
-	makeMars();
-	makeJupiter();
-	makeSaturn();
-	makeUranus();
-	makeNeptune();
+	makePlanets();
 
 	PIEaddDualCommand("Zoom in", zoomIn)
 	PIEaddDualCommand("Zoom out",zoomOut)
@@ -381,47 +271,51 @@ function loadExperimentElements(){
 	PIEaddDisplayText("Distance from Sun","None")
 	PIEaddDisplayText("Orbital time","None")
 
-	window.addEventListener( 'resize', PIEresize, false );
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );   
+	PIEaddInputText("Name","None");
+	PIEaddInputText("Distance from Sun","None")
+	PIEaddInputText("Orbital time","None")
+	PIEadjustCamera(0,0,1000);
 
+	PIEresetExperiment(); hack=0;
+	PIEstartAnimation();
 
-
+	window.addEventListener('resize', Windowresize, false);	
+	window.addEventListener( 'mousedown', onMouseDown, false );		
 }
 
 function resetExperiment(){
-
 	initialise();
-
+	var i;
+	for(i=0;i<8;i++){
+		planets[i].position.set(planetsOrbitX[i],0,0);
+	}
+	uranusRing.position.set(planetsOrbitX[6],0,0);
+	saturnRing.position.set(planetsOrbitX[5],0,0);
+	PIEchangeInputText("Name","None");
+	PIEchangeInputText("Distance from Sun","None")
+	PIEchangeInputText("Orbital time","None")
+	PIEchangeDisplayText("Name","None");
+	PIEchangeDisplayText("Distance from Sun","None")
+	PIEchangeDisplayText("Orbital time","None")
 }
+
 function updateExperimentElements(t,dt){
-	 
-	t=t/800;
-	//dt=dt/1000;
-	
-	mercury.position.x = mercuryOrbitX*Math.sin(mercurySpeed*t);
-	mercury.position.y = -mercuryOrbitY*Math.cos(mercurySpeed*t);
-	
-	venus.position.x = venusOrbitX*Math.sin(venusSpeed*t);
-	venus.position.y = -venusOrbitY*Math.cos(venusSpeed*t);
-	
-	earth.position.x = earthOrbitX*Math.sin(earthSpeed*t);
-	earth.position.y = -earthOrbitY*Math.cos(earthSpeed*t);
-	
-	mars.position.x = marsOrbitX*Math.sin(marsSpeed*t);
-	mars.position.y = -marsOrbitY*Math.cos(marsSpeed*t);
-	
-	
-	jupiter.position.x = jupiterOrbitX*Math.sin(t*jupiterSpeed);
-	jupiter.position.y = -jupiterOrbitY*Math.cos(t*jupiterSpeed);
-	
-	saturn.position.x = saturnOrbitX*Math.sin(saturnSpeed*t);
-	saturn.position.y = -saturnOrbitY*Math.cos(saturnSpeed*t);
-	
-	uranus.position.x = uranusOrbitX*Math.sin(uranusSpeed*t);
-	uranus.position.y = -uranusOrbitY*Math.cos(uranusSpeed*t);
-	
-	neptune.position.x = neptuneOrbitX*Math.sin(neptuneSpeed*t);
-	neptune.position.y = -neptuneOrbitY*Math.cos(neptuneSpeed*t);
-	
+	if(hack<7){
+		hack++;
+		if(hack==7)
+		PIEstopAnimation();
+	}
+	else
+	{
+		var i;
+		for(i=0;i<8;i++){
+			planets[i].position.x = planetsOrbitX[i]*Math.cos(planetsSpeed[i]*t);
+			planets[i].position.y = planetsOrbitY[i]*Math.sin(planetsSpeed[i]*t);	
+		}	
+		saturnRing.position.x = planetsOrbitX[5]*Math.cos(planetsSpeed[5]*t);
+		saturnRing.position.y = planetsOrbitY[5]*Math.sin(planetsSpeed[5]*t);		
+		uranusRing.position.x = planetsOrbitX[6]*Math.cos(planetsSpeed[6]*t);
+		uranusRing.position.y = planetsOrbitY[6]*Math.sin(planetsSpeed[6]*t);
+	}
 }
 
